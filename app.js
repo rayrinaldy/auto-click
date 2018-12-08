@@ -23,8 +23,8 @@ let productsUrl = [
         waitUntil: 'load'
     });
 
-    await page.type('#email', config.username);
-    await page.type('#password', config.password);
+    await page.type('#email', config.hakama.username);
+    await page.type('#password', config.hakama.password);
     await page.click('#login-submit');
 
     await page.waitForNavigation({ waitUntil: 'load' });
@@ -44,9 +44,9 @@ let productsUrl = [
         console.log(url, 'url done')
     }
 
-    // await page.goto(productsUrl[1], {
-    //     waitUntil: 'load'
-    // });
+    browser.close();
+
+    // await page.goto('https://www.tokopedia.com/otakotakselaras/otak-otak-selaras-otak-otak-pandu-asli-bandung');
 
     // try {
     //     await page.waitForSelector('.rvm-button-promo');
@@ -54,8 +54,6 @@ let productsUrl = [
     // } catch (error) {
     //     console.log('no selectors found');
     // }
-
-    // await page.screenshot({ path: './screenshot.jpg' });
 
     // browser.close();
 
