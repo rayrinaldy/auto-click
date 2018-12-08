@@ -1,4 +1,5 @@
 const puppeteer = require('puppeteer');
+const config = require('./config');
 
 let productsUrl = [
     'https://www.tokopedia.com/hakama/t-shirt-origami-wado-navy-m',
@@ -22,8 +23,8 @@ let productsUrl = [
         waitUntil: 'load'
     });
 
-    await page.type('#email', 'hakamaclothing@gmail.com');
-    await page.type('#password', 'abcDE123@');
+    await page.type('#email', config.username);
+    await page.type('#password', config.password);
     await page.click('#login-submit');
 
     await page.waitForNavigation({ waitUntil: 'load' });
