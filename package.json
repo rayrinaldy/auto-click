@@ -9,6 +9,7 @@
   "author": "Ray",
   "license": "ISC",
   "dependencies": {
+    "node-cron": "^2.0.3",
     "npm": "^6.4.1",
     "puppeteer": "^1.11.0"
   }

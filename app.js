@@ -1,4 +1,5 @@
 const puppeteer = require('puppeteer');
+const cron = require('node-cron');
 const config = require('./config');
 
 let productsUrl = [
@@ -13,21 +14,26 @@ let productsUrl = [
     'https://www.tokopedia.com/hakama/t-shirt-kakusareta-daruma-putih-m'
 ];
 
-(async () => {
-
+const makeRequest = async () => {
     const browser = await puppeteer.launch({
-        headless: false
+        args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
     const page = await browser.newPage();
     await page.goto('https://www.tokopedia.com/login', {
         waitUntil: 'load'
     });
 
+    console.log('login page loaded')
+
     await page.type('#email', config.hakama.username);
     await page.type('#password', config.hakama.password);
     await page.click('#login-submit');
 
-    await page.waitForNavigation({ waitUntil: 'load' });
+    console.log('logged in to Tokopedia')
+
+    await page.waitForNavigation({
+        waitUntil: 'load'
+    });
 
     for (let i = 0; i < productsUrl.length; i++) {
         const url = productsUrl[i];
@@ -41,20 +47,67 @@ let productsUrl = [
             console.log('no selectors found');
         }
 
-        console.log(url, 'url done')
+        console.log(url, 'is done')
     }
 
     browser.close();
+}
 
-    // await page.goto('https://www.tokopedia.com/otakotakselaras/otak-otak-selaras-otak-otak-pandu-asli-bandung');
+cron.schedule('0 * * * *', () => {
+    console.log('Running task...');
+    makeRequest();
+});
 
-    // try {
-    //     await page.waitForSelector('.rvm-button-promo');
-    //     await page.click('.rvm-button-promo');
-    // } catch (error) {
-    //     console.log('no selectors found');
-    // }
 
-    // browser.close();
+// (async () => {
 
-})();
+//     // const browser = await puppeteer.launch({
+//     //     headless: false,
+//     // });
+//     const browser = await puppeteer.launch({
+//         args: ['--no-sandbox', '--disable-setuid-sandbox']
+//     });
+//     const page = await browser.newPage();
+//     await page.goto('https://www.tokopedia.com/login', {
+//         waitUntil: 'load'
+//     });
+
+//     console.log('login page loaded')
+
+//     await page.type('#email', config.hakama.username);
+//     await page.type('#password', config.hakama.password);
+//     await page.click('#login-submit');
+
+//     console.log('logged in to Tokopedia')
+
+//     await page.waitForNavigation({ waitUntil: 'load' });
+
+//     for (let i = 0; i < productsUrl.length; i++) {
+//         const url = productsUrl[i];
+
+//         await page.goto(`${url}`);
+
+//         try {
+//             await page.waitForSelector('.rvm-button-promo');
+//             await page.click('.rvm-button-promo');
+//         } catch (error) {
+//             console.log('no selectors found');
+//         }
+
+//         console.log(url, 'is done')
+//     }
+
+//     browser.close();
+
+//     // await page.goto('https://www.tokopedia.com/otakotakselaras/otak-otak-selaras-otak-otak-pandu-asli-bandung');
+
+//     // try {
+//     //     await page.waitForSelector('.rvm-button-promo');
+//     //     await page.click('.rvm-button-promo');
+//     // } catch (error) {
+//     //     console.log('no selectors found');
+//     // }
+
+//     // browser.close();
+
+// })();
