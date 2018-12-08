@@ -53,7 +53,7 @@ const makeRequest = async () => {
     browser.close();
 }
 
-cron.schedule('0 * * * *', () => {
+cron.schedule('15 * * * *', () => {
     console.log('Running task...');
     makeRequest();
 });
