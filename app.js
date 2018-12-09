@@ -19,9 +19,7 @@ let otakotakUrl = [
 ]
 
 const promoteHakama = async () => {
-    const browser = await puppeteer.launch({
-        args: ['--no-sandbox', '--disable-setuid-sandbox']
-    });
+    const browser = await puppeteer.launch();
     const page = await browser.newPage();
     await page.goto('https://www.tokopedia.com/login', {
         waitUntil: 'load'
@@ -36,13 +34,16 @@ const promoteHakama = async () => {
     console.log('Hakama logged in to Tokopedia')
 
     await page.waitForNavigation({
-        waitUntil: 'load'
+        waitUntil: 'networkidle2',
     });
 
     for (let i = 0; i < productsUrl.length; i++) {
         const url = productsUrl[i];
 
-        await page.goto(`${url}`);
+        await page.goto(`${url}`, {
+            waitUntil: 'networkidle2',
+            timeout: 0
+        });
 
         try {
             await page.waitForSelector('.rvm-button-promo');
@@ -58,9 +59,7 @@ const promoteHakama = async () => {
 }
 
 const promoteOtakOtak = async () => {
-    const browser = await puppeteer.launch({
-        args: ['--no-sandbox', '--disable-setuid-sandbox']
-    });
+    const browser = await puppeteer.launch();
 
     const page = await browser.newPage();
 
@@ -77,15 +76,16 @@ const promoteOtakOtak = async () => {
     console.log('Otak Otak Selaras logged in to Tokopedia')
 
     await page.waitForNavigation({
-        waitUntil: 'load'
+        waitUntil: 'networkidle2',
     });
 
    for (let i = 0; i < otakotakUrl.length; i++) {
        const url = otakotakUrl[i];
 
-       console.log(url)
-
-       await page.goto(`${url}`);
+       await page.goto(`${url}`, {
+            waitUntil: 'networkidle2',
+            timeout: 0
+        });
 
        try {
            await page.waitForSelector('.rvm-button-promo');
@@ -100,64 +100,12 @@ const promoteOtakOtak = async () => {
     browser.close();
 }
 
-cron.schedule('15 * * * *', () => {
+const promote = async() => {
+    await promoteHakama();
+    await promoteOtakOtak();
+}
+
+cron.schedule('30 * * * *', () => {
     console.log('Running task...');
-    promoteHakama();
+    promote();
 });
-
-// promoteHakama();
-// promoteOtakOtak();
-
-
-// (async () => {
-
-//     // const browser = await puppeteer.launch({
-//     //     headless: false,
-//     // });
-//     const browser = await puppeteer.launch({
-//         args: ['--no-sandbox', '--disable-setuid-sandbox']
-//     });
-//     const page = await browser.newPage();
-//     await page.goto('https://www.tokopedia.com/login', {
-//         waitUntil: 'load'
-//     });
-
-//     console.log('login page loaded')
-
-//     await page.type('#email', config.hakama.username);
-//     await page.type('#password', config.hakama.password);
-//     await page.click('#login-submit');
-
-//     console.log('logged in to Tokopedia')
-
-//     await page.waitForNavigation({ waitUntil: 'load' });
-
-//     for (let i = 0; i < productsUrl.length; i++) {
-//         const url = productsUrl[i];
-
-//         await page.goto(`${url}`);
-
-//         try {
-//             await page.waitForSelector('.rvm-button-promo');
-//             await page.click('.rvm-button-promo');
-//         } catch (error) {
-//             console.log('no selectors found');
-//         }
-
-//         console.log(url, 'is done')
-//     }
-
-//     browser.close();
-
-//     // await page.goto('https://www.tokopedia.com/otakotakselaras/otak-otak-selaras-otak-otak-pandu-asli-bandung');
-
-//     // try {
-//     //     await page.waitForSelector('.rvm-button-promo');
-//     //     await page.click('.rvm-button-promo');
-//     // } catch (error) {
-//     //     console.log('no selectors found');
-//     // }
-
-//     // browser.close();
-
-// })();
