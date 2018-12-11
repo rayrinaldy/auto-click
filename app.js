@@ -4,15 +4,15 @@ const config = require('./config');
 const now = new Date();
 
 let productsUrl = [
-    'https://www.tokopedia.com/hakama/t-shirt-origami-wado-navy-m',
-    'https://www.tokopedia.com/hakama/t-shirt-koike-twelve-12-putih-m',
-    'https://www.tokopedia.com/hakama/t-shirt-daruma-musketeers-putih-m',
-    'https://www.tokopedia.com/hakama/t-shirt-blue-hokusai-putih-m',
-    'https://www.tokopedia.com/hakama/t-shirt-tonbo-secrets-hitam-m',
-    'https://www.tokopedia.com/hakama/t-shirt-golden-hokusai-abu-abu-m',
-    'https://www.tokopedia.com/hakama/t-shirt-daruma-kaze-hitam-m',
-    'https://www.tokopedia.com/hakama/t-shirt-golden-daruma-navy-m',
-    'https://www.tokopedia.com/hakama/t-shirt-kakusareta-daruma-putih-m'
+    'https://www.tokopedia.com/hakama/t-shirt-kaos-baju-origami-wado-by-hakama-navy-m',
+    'https://www.tokopedia.com/hakama/t-shirt-kaos-baju-koike-twelve-12-by-hakama-putih-m',
+    'https://www.tokopedia.com/hakama/t-shirt-kaos-baju-daruma-musketeers-by-hakama-putih-m',
+    'https://www.tokopedia.com/hakama/t-shirt-kaos-baju-blue-hokusai-by-hakama-putih-m',
+    'https://www.tokopedia.com/hakama/t-shirt-kaos-baju-tonbo-secrets-by-hakama-abu-abu-m',
+    'https://www.tokopedia.com/hakama/t-shirt-kaos-baju-golden-hokusai-by-hakama-abu-abu-m',
+    'https://www.tokopedia.com/hakama/t-shirt-kaos-baju-daruma-kaze-by-hakama-hitam-m',
+    'https://www.tokopedia.com/hakama/t-shirt-kaos-baju-golden-daruma-by-hakama-navy-m',
+    'https://www.tokopedia.com/hakama/t-shirt-kaos-baju-kakusareta-daruma-by-hakama-putih-m'
 ];
 
 let otakotakUrl = [
@@ -107,7 +107,7 @@ const promote = async() => {
     await promoteOtakOtak();
 }
 
-cron.schedule('30 * * * *', () => {
+cron.schedule('6 * * * *', () => {
     console.log('=======================================')
     console.log('Running task at' + now);
     promote();
