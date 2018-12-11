@@ -1,7 +1,6 @@
 const puppeteer = require('puppeteer');
 const cron = require('node-cron');
 const config = require('./config');
-const now = new Date();
 
 let productsUrl = [
     'https://www.tokopedia.com/hakama/t-shirt-kaos-baju-origami-wado-by-hakama-navy-m',
@@ -107,8 +106,9 @@ const promote = async() => {
     await promoteOtakOtak();
 }
 
-cron.schedule('6 * * * *', () => {
+cron.schedule('20 * * * *', () => {
+    const now = new Date();
     console.log('=======================================')
-    console.log('Running task at' + now);
+    console.log('Running task at ' + now);
     promote();
 });
