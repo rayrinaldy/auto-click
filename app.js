@@ -3,15 +3,15 @@ const cron = require('node-cron');
 const config = require('./config');
 
 let productsUrl = [
-    'https://www.tokopedia.com/hakama/t-shirt-kaos-baju-origami-wado-by-hakama-navy-m',
-    'https://www.tokopedia.com/hakama/t-shirt-kaos-baju-koike-twelve-12-by-hakama-putih-m',
-    'https://www.tokopedia.com/hakama/t-shirt-kaos-baju-daruma-musketeers-by-hakama-putih-m',
-    'https://www.tokopedia.com/hakama/t-shirt-kaos-baju-blue-hokusai-by-hakama-putih-m',
-    'https://www.tokopedia.com/hakama/t-shirt-kaos-baju-tonbo-secrets-by-hakama-abu-abu-m',
-    'https://www.tokopedia.com/hakama/t-shirt-kaos-baju-golden-hokusai-by-hakama-abu-abu-m',
-    'https://www.tokopedia.com/hakama/t-shirt-kaos-baju-daruma-kaze-by-hakama-hitam-m',
-    'https://www.tokopedia.com/hakama/t-shirt-kaos-baju-golden-daruma-by-hakama-navy-m',
-    'https://www.tokopedia.com/hakama/t-shirt-kaos-baju-kakusareta-daruma-by-hakama-putih-m'
+    'https: //www.tokopedia.com/hakama/t-shirt-motif-jepang-kaos-distro-premium-kakusareta-daruma-by-hakama-99d3',
+    'https: //www.tokopedia.com/hakama/t-shirt-motif-jepang-kaos-distro-premium-golden-daruma-by-hakama-d3d4',
+    'https: //www.tokopedia.com/hakama/t-shirt-motif-jepang-kaos-distro-premium-daruma-kaze-by-hakama-bd63',
+    'https: //www.tokopedia.com/hakama/t-shirt-motif-jepang-kaos-distro-premium-tonbo-secrets-by-hakama-87c2',
+    'https: //www.tokopedia.com/hakama/t-shirt-motif-jepang-kaos-distro-premium-koike-twelve-by-hakama-28a1',
+    'https: //www.tokopedia.com/hakama/t-shirt-motif-jepang-kaos-distro-premium-origami-wado-by-hakama-navy-l',
+    'https: //www.tokopedia.com/hakama/t-shirt-motif-jepang-kaos-distro-premium-daruma-musketeers-by-hakama-putih-l',
+    'https: //www.tokopedia.com/hakama/t-shirt-motif-premium-kaos-distro-premium-blue-hokusai-by-hakama-putih-m',
+    'https: //www.tokopedia.com/hakama/t-shirt-motif-jepang-kaos-distro-premium-golden-hokusai-by-hakama-abu-abu-m',
 ];
 
 let otakotakUrl = [
